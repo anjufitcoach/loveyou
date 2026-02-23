@@ -1,133 +1,196 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kavleen 🤍</title>
 
 <style>
-html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  overflow: hidden;
-  font-family: Georgia, serif;
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
 }
 
-/* Video background */
-video {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  object-fit: cover;
-  z-index: 0;
+html,body{
+  height:100%;
+  font-family:'Georgia', serif;
+  overflow:hidden;
 }
 
-/* Overlay */
-.overlay {
-  position: relative;
-  z-index: 1;
-  height: 100vh;
-  width: 100vw;
-  background: rgba(0,0,0,0.45);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  color: white;
-  padding: 20px;
+/* Background Image */
+body{
+  background: url("background.jpg") no-repeat center center fixed;
+  background-size: cover;
 }
 
-.content {
-  max-width: 700px;
+/* Romantic Dark Overlay */
+.overlay{
+  position:absolute;
+  width:100%;
+  height:100%;
+  background:rgba(20,10,15,0.75);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:20px;
 }
 
-h1 {
-  font-size: 3rem;
-  margin-bottom: 20px;
+/* Content */
+.content{
+  max-width:750px;
+  color:#f2f2f2;
+  animation:fadeIn 2s ease;
 }
 
-p {
-  font-size: 1.2rem;
-  line-height: 1.8;
+h1{
+  font-size:3rem;
+  margin-bottom:25px;
+  font-weight:400;
 }
 
-button {
-  margin-top: 25px;
-  padding: 12px 30px;
-  border-radius: 30px;
-  border: 1px solid white;
-  background: transparent;
-  color: white;
-  cursor: pointer;
-  font-size: 1rem;
+p{
+  font-size:1.2rem;
+  line-height:2;
+  margin-bottom:18px;
+  color:#e6e6e6;
 }
 
-button:hover {
-  background: white;
-  color: black;
+button{
+  margin-top:25px;
+  padding:12px 35px;
+  border-radius:30px;
+  border:1px solid white;
+  background:transparent;
+  color:white;
+  font-size:1rem;
+  cursor:pointer;
+  transition:0.4s ease;
 }
 
-.hidden {
-  display: none;
-  margin-top: 20px;
+button:hover{
+  background:white;
+  color:black;
 }
 
-.finalLove {
-  position: fixed;
-  bottom: 15%;
-  width: 100%;
-  text-align: center;
-  font-size: 2rem;
-  color: white;
-  opacity: 0;
-  transition: opacity 3s ease;
-  z-index: 2;
+.hidden{
+  display:none;
+  margin-top:25px;
+  font-size:1.15rem;
+  line-height:2;
+  animation:fadeIn 1.5s ease;
+}
+
+/* I Love You Fade */
+.love{
+  position:absolute;
+  width:100%;
+  text-align:center;
+  bottom:40px;
+  font-size:2rem;
+  color:white;
+  opacity:0;
+  transition:opacity 3s ease;
+  letter-spacing:2px;
+}
+
+/* Floating lights */
+.particle{
+  position:absolute;
+  width:3px;
+  height:3px;
+  background:white;
+  border-radius:50%;
+  opacity:0.6;
+  animation:floatUp linear infinite;
+}
+
+@keyframes floatUp{
+  from{
+    transform:translateY(100vh);
+    opacity:0;
+  }
+  to{
+    transform:translateY(-10vh);
+    opacity:0.8;
+  }
+}
+
+@keyframes fadeIn{
+  from{opacity:0;}
+  to{opacity:1;}
+}
+
+@media(max-width:600px){
+  h1{font-size:2rem;}
+  p{font-size:1rem;}
 }
 </style>
 </head>
 
 <body>
 
-<video autoplay muted loop playsinline>
-  <source src="ourvideo.mp4" type="video/mp4">
-</video>
-
 <div class="overlay">
   <div class="content">
     <h1>Kavleen 🤍</h1>
 
     <p>
-      Mujhse ek choti si galti ho gayi…  
-      Par tum meri life mein choti nahi ho.
+      Shayad meri galti choti thi…  
+      par tum mere liye kabhi choti nahi ho.
     </p>
 
     <p>
-      Main sirf itna chahta hoon  
-      ki tum hamesha smile karo.
+      Mujhe bura lagta hai yeh soch ke  
+      ki meri wajah se tum thodi si bhi hurt hui.
     </p>
 
-    <button onclick="showMessage()">Bas ek baat aur…</button>
+    <p>
+      Main perfect nahi hoon…  
+      par main tumhare liye better banna chahta hoon.  
+      Har din.
+    </p>
+
+    <button onclick="showMessage()">Dil se ek baat 🤍</button>
 
     <div class="hidden" id="extra">
-      Main sach mein sorry hoon. 🤍
+      Main sach mein sorry hoon.  
+      Aur main promise karta hoon —  
+      main hamesha tumhari feelings ko importance dunga.  
+
+      Tum meri sukoon ho. 🤍
     </div>
   </div>
 </div>
 
-<div class="finalLove" id="finalLove">
-  I love you, Kavleen 🤍
+<div class="love" id="loveText">
+  I Love You Kavleen 🤍
 </div>
 
 <script>
-function showMessage() {
-  document.getElementById("extra").style.display = "block";
+function showMessage(){
+  document.getElementById("extra").style.display="block";
+
+  // Fade in I Love You after 2 seconds
   setTimeout(function(){
-    document.getElementById("finalLove").style.opacity = "1";
-  }, 2000);
+    document.getElementById("loveText").style.opacity="1";
+  },2000);
 }
+
+/* Floating particles */
+function createParticle(){
+  const particle=document.createElement("div");
+  particle.classList.add("particle");
+  particle.style.left=Math.random()*100+"vw";
+  particle.style.animationDuration=(Math.random()*5+5)+"s";
+  document.body.appendChild(particle);
+
+  setTimeout(()=>{
+    particle.remove();
+  },10000);
+}
+
+setInterval(createParticle,400);
 </script>
 
 </body>
