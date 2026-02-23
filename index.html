@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kavleen 🤍</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body,html{
+  height:100%;
+  font-family:'Georgia',serif;
+  overflow:hidden;
+  background:black;
+}
+
+/* Background Video */
+#bgVideo{
+  position:fixed;
+  top:50%;
+  left:50%;
+  min-width:100%;
+  min-height:100%;
+  transform:translate(-50%,-50%);
+  object-fit:cover;
+  z-index:-2;
+}
+
+/* Overlay */
+.overlay{
+  position:absolute;
+  width:100%;
+  height:100%;
+  background:rgba(15,8,12,0.75);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:20px;
+}
+
+/* Content */
+.content{
+  max-width:750px;
+  color:#f2f2f2;
+  animation:fadeIn 2s ease;
+}
+
+h1{
+  font-size:3rem;
+  margin-bottom:25px;
+  font-weight:400;
+}
+
+p{
+  font-size:1.2rem;
+  line-height:2;
+  margin-bottom:18px;
+  color:#e6e6e6;
+}
+
+button{
+  margin-top:25px;
+  padding:12px 35px;
+  border-radius:30px;
+  border:1px solid white;
+  background:transparent;
+  color:white;
+  font-size:1rem;
+  cursor:pointer;
+  transition:0.4s ease;
+}
+
+button:hover{
+  background:white;
+  color:black;
+}
+
+.hidden{
+  display:none;
+  margin-top:25px;
+  font-size:1.15rem;
+  line-height:2;
+  animation:fadeIn 1.5s ease;
+}
+
+/* Final I Love You */
+.finalLove{
+  position:absolute;
+  width:100%;
+  text-align:center;
+  bottom:15%;
+  font-size:2.5rem;
+  color:white;
+  opacity:0;
+  transition:opacity 3s ease;
+  text-shadow:0 0 15px rgba(255,255,255,0.6);
+}
+
+/* Floating particles */
+.particle{
+  position:absolute;
+  width:3px;
+  height:3px;
+  background:white;
+  border-radius:50%;
+  opacity:0.6;
+  animation:floatUp linear infinite;
+}
+
+@keyframes floatUp{
+  from{
+    transform:translateY(100vh);
+    opacity:0;
+  }
+  to{
+    transform:translateY(-10vh);
+    opacity:0.8;
+  }
+}
+
+@keyframes fadeIn{
+  from{opacity:0;}
+  to{opacity:1;}
+}
+
+@media(max-width:600px){
+  h1{font-size:2rem;}
+  p{font-size:1rem;}
+  .finalLove{font-size:1.8rem;}
+}
+</style>
+</head>
+
+<body>
+
+<video id="bgVideo" autoplay muted loop playsinline>
+  <source src="ourvideo.mp4" type="video/mp4">
+</video>
+
+<div class="overlay">
+  <div class="content">
+    <h1>Kavleen 🤍</h1>
+
+    <p>
+      Mujhse ek choti si galti ho gayi…  
+      Par tum meri life mein choti nahi ho.
+    </p>
+
+    <p>
+      Main kabhi nahi chahta ki meri wajah se  
+      tum thoda sa bhi hurt feel karo.
+    </p>
+
+    <p>
+      Main perfect nahi hoon…  
+      par tumhare liye better banna chahta hoon.
+    </p>
+
+    <button onclick="showMessage()">Bas ek baat aur…</button>
+
+    <div class="hidden" id="extra">
+      Main sach mein sorry hoon.  
+      Aur main hamesha tumhari respect aur care karunga. 🤍
+    </div>
+  </div>
+</div>
+
+<div class="finalLove" id="finalLove">
+  I love you, Kavleen 🤍
+</div>
+
+<script>
+function showMessage(){
+  document.getElementById("extra").style.display="block";
+
+  setTimeout(()=>{
+    document.getElementById("finalLove").style.opacity="1";
+  },3000);
+}
+
+/* Floating particles */
+function createParticle(){
+  const particle=document.createElement("div");
+  particle.classList.add("particle");
+  particle.style.left=Math.random()*100+"vw";
+  particle.style.animationDuration=(Math.random()*5+5)+"s";
+  document.body.appendChild(particle);
+
+  setTimeout(()=>{
+    particle.remove();
+  },10000);
+}
+
+setInterval(createParticle,400);
+
+/* Ensure autoplay */
+const video=document.getElementById("bgVideo");
+video.play().catch(()=>{});
+</script>
+
+</body>
+</html>
